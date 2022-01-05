@@ -22,7 +22,7 @@ private:
     uint32_t pixels[64][32]{};
 
 public:
-    void loadProgram(string fileName)
+    void loadProgram(std::string fileName);
 };
 
 
