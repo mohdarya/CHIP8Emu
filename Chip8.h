@@ -2,6 +2,7 @@
 // Created by moh on 1/5/22.
 //
 #include <cstdint>
+#include <string>
 #ifndef CHIP8EMU_CHIP8_H
 #define CHIP8EMU_CHIP8_H
 
@@ -21,7 +22,7 @@ private:
     uint32_t pixels[64][32]{};
 
 public:
-    
+    void loadProgram(string fileName)
 };
 
 
