@@ -40,6 +40,9 @@ void Chip8::loadProgram(string fileName) {
 
 void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) {
     char firstInstruction = getFirstCode(instructionFirst);
+    int secondNibble = (instructionFirst >> (4*2));
+    int thirdNibble = (instructionSecond >> (4*1));
+    int fourthNibble = (instructionSecond >> (4*2));
 
     switch (firstInstruction) {
         case '0':
@@ -54,11 +57,11 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
             }
             break;
         case '1':
-            programCounter = (firstInstruction >> (4*2)) + instructionSecond;
+            programCounter = secondNibble + instructionSecond;
             break;
         case '2':
             stack.push(programCounter);
-            programCounter = (firstInstruction >> (4*2)) + instructionSecond;
+            programCounter = secondNibble + instructionSecond;
             break;
 
     }
