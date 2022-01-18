@@ -3,6 +3,7 @@
 //
 #include <cstdint>
 #include <string>
+#include <stack>
 #ifndef CHIP8EMU_CHIP8_H
 #define CHIP8EMU_CHIP8_H
 
@@ -14,7 +15,7 @@ private:
     uint8_t memory [4096]{};
     uint16_t indexReg;
     uint16_t programCounter;
-    uint16_t stack[16]{};
+    std::stack<uint16_t> stack;
     uint8_t stackPointer;
     uint8_t delayTimer;
     uint8_t soundTimer;
@@ -23,6 +24,10 @@ private:
 
 public:
     void loadProgram(std::string fileName);
+    void runInstruction(uint8_t instructionFirst, uint8_t instructionSecond);
+    char getFirstCode(uint8_t instruction);
+    std::string instructionToHex(uint8_t instruction);
+    void clearScreen();
 };
 
 
