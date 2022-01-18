@@ -52,4 +52,12 @@ void Chip8::clearScreen() {
 
 }
 
+std::string Chip8::instructionToHex(uint8_t instruction) {
+    stringstream  stream;
+    stream << hex << (int) instruction ;
+    return stream.str();
+}
+
+
+
 
