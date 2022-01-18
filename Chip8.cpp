@@ -7,6 +7,8 @@
 #include "Chip8.h"
 #include <fstream>
 #include <iostream>
+#include <bitset>
+#include <iomanip>
 using namespace std;
 
 const unsigned int START_ADDRESS = 0x200;
@@ -34,3 +36,19 @@ void Chip8::loadProgram(string fileName) {
     }
 
 }
+
+void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) {
+
+}
+
+char Chip8::getFirstCode(uint8_t instruction) {
+    int first4Bit = (instruction >> (4*1)) & 0xf;
+    stringstream  stream;
+    stream << hex <<first4Bit ;
+    return stream.str()[0];
+}
+
+
+
+
+
