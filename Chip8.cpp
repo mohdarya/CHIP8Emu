@@ -81,6 +81,13 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
                 programCounter += 2;
             }
             break;
+        case '6':
+            registers[secondNibble] = instructionSecond;
+            break;
+        case '7':
+            registers[secondNibble] += instructionSecond;
+            break;
+
     }
 }
 
