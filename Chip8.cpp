@@ -108,6 +108,12 @@ std::string Chip8::instructionToHex(uint8_t instruction) {
     return stream.str();
 }
 
+char Chip8::intToHex(int instruction) {
+    stringstream  stream;
+    stream << hex <<  instruction ;
+    return stream.str()[0];
+}
+
 
 
 
