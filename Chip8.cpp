@@ -30,6 +30,7 @@ void Chip8::loadProgram(string fileName) {
         for(long i = 0; i < fileSize; i++)
         {
             memory[START_ADDRESS + i] = buffer[i];
+
         }
 
         delete[] buffer;
@@ -52,8 +53,9 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
                     stack.pop();
             }
             break;
-
-
+        case '1':
+            programCounter = (firstInstruction >> (4*2)) + instructionSecond;
+            break;
 
     }
 }
