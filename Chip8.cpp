@@ -87,6 +87,66 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
         case '7':
             registers[secondNibble] += instructionSecond;
             break;
+        case '8':
+            switch (intToHex(fourthNibble)) {
+                case '0':
+                    registers[secondNibble] = registers[thirdNibble];
+                    break;
+                case '1':
+                    registers[secondNibble] |= registers[thirdNibble];
+                    break;
+                case '2':
+                    registers[secondNibble] &= registers[thirdNibble];
+                    break;
+                case '3':
+                    registers[secondNibble] ^= registers[thirdNibble];
+                    break;
+                case '4':
+                   uint16_t sum;
+                   sum = registers[secondNibble] + registers[thirdNibble];
+                    if (sum > 255U)
+                    {
+                        registers[0xF] = 1;
+                    }
+                    else
+                    {
+                        registers[0xF] = 0;
+                    }
+                    registers[secondNibble] = sum & 0xFFu;
+                    break;
+                case '5':
+                    if (registers[secondNibble] > registers[thirdNibble])
+                    {
+                        registers[0xF] = 1;
+                    }
+                    else
+                    {
+                        registers[0xF] = 0;
+                    }
+
+                    registers[secondNibble] -= registers[thirdNibble];
+                    break;
+                case '6':
+                    registers[0xf] = registers[thirdNibble] & 0x1u ;
+                    registers[thirdNibble] >>= 1;
+                    break;
+                case '7':
+                    if (registers[thirdNibble] > registers[secondNibble])
+                    {
+                        registers[0xF] = 1;
+                    }
+                    else
+                    {
+                        registers[0xF] = 0;
+                    }
+
+                    registers[secondNibble] = registers[thirdNibble] - registers[secondNibble];
+                    break;
+                case 'e':
+                    registers[0xf] = (registers[thirdNibble] & 0x80u) >> 7u;
+                    registers[thirdNibble] <<= 1;
+                    break;
+            }
 
     }
 }
