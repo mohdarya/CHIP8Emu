@@ -56,6 +56,10 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
         case '1':
             programCounter = (firstInstruction >> (4*2)) + instructionSecond;
             break;
+        case '2':
+            stack.push(programCounter);
+            programCounter = (firstInstruction >> (4*2)) + instructionSecond;
+            break;
 
     }
 }
