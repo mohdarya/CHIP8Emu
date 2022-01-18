@@ -28,6 +28,7 @@ public:
     char getFirstCode(uint8_t instruction);
     std::string instructionToHex(uint8_t instruction);
     void clearScreen();
+    std::string intToHex(int instruction);
 };
 
 
