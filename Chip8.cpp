@@ -48,7 +48,8 @@ char Chip8::getFirstCode(uint8_t instruction) {
     return stream.str()[0];
 }
 
+void Chip8::clearScreen() {
 
-
+}
 
 
