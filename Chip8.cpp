@@ -63,7 +63,24 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
             stack.push(programCounter);
             programCounter = secondNibble + instructionSecond;
             break;
-
+        case '3':
+            if(registers[secondNibble] == instructionSecond)
+            {
+                programCounter += 2;
+            }
+            break;
+        case '4':
+            if(registers[secondNibble]  != instructionSecond)
+            {
+                programCounter += 2;
+            }
+            break;
+        case '5':
+            if(registers[secondNibble]  == registers[thirdNibble])
+            {
+                programCounter += 2;
+            }
+            break;
     }
 }
 
