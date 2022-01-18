@@ -38,7 +38,24 @@ void Chip8::loadProgram(string fileName) {
 }
 
 void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) {
+    char firstInstruction = getFirstCode(instructionFirst);
 
+    switch (firstInstruction) {
+        case '0':
+            if(instructionToHex(instructionSecond) == "e0")
+            {
+                clearScreen();
+            }
+            else if(instructionToHex(instructionSecond) == "ee")
+            {
+                    programCounter = stack.top();
+                    stack.pop();
+            }
+            break;
+
+
+
+    }
 }
 
 char Chip8::getFirstCode(uint8_t instruction) {
