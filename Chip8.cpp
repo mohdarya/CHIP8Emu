@@ -41,7 +41,7 @@ void Chip8::loadProgram(string fileName) {
 
 Chip8::Chip8() {
     for (int i = 0; i < 0x50; i++) {
-        memory[i] =
+        memory[i] = font[i];
     }
 
 }
