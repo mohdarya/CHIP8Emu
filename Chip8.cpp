@@ -207,17 +207,15 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
             }
             if (instructionToHex(instructionSecond) == "55") {
                 uint16_t startingAddress = indexReg;
-                for(int i = 0x0; i < secondNibble; i++)
-                {
+                for (int i = 0x0; i < secondNibble; i++) {
                     memory[startingAddress] = registers[i];
                     startingAddress += 1;
                 }
             }
             if (instructionToHex(instructionSecond) == "65") {
                 uint16_t startingAddress = indexReg;
-                for(int i = 0x0; i < secondNibble; i++)
-                {
-                    registers[i] =  memory[startingAddress];
+                for (int i = 0x0; i < secondNibble; i++) {
+                    registers[i] = memory[startingAddress];
                     startingAddress += 1;
                 }
             }
@@ -233,14 +231,6 @@ char Chip8::getFirstCode(uint8_t instruction) {
     return stream.str()[0];
 }
 
-void Chip8::clearScreen() {
-
-}
-
-
-void Chip8::draw(uint8_t x, uint8_t y, uint8_t height) {
-
-}
 
 std::string Chip8::instructionToHex(uint8_t instruction) {
     stringstream stream;
@@ -262,6 +252,32 @@ int Chip8::generateRand() {
     return (int) dist255(rng);
 }
 
+
+void Chip8::setDelay(uint8_t delay) {
+    delayTimer = delay;
+
+}
+
+void Chip8::setSound(uint8_t sound) {
+    soundTimer = sound;
+
+}
+
+
+void Chip8::clearScreen() {
+    for (int i = 0; i < 64; i++) {
+        for (int j = 0; j < 32; j++) {
+            pixels[i][j] = 0;
+
+        }
+    }
+}
+
+
+void Chip8::draw(uint8_t x, uint8_t y, uint8_t height) {
+
+}
+
 uint8_t Chip8::getKey() {
 
 
@@ -276,18 +292,3 @@ uint8_t Chip8::getDelay() {
 
 
 }
-
-void Chip8::setDelay(uint8_t delay) {
-    delayTimer = delay;
-
-}
-
-void Chip8::setSound(uint8_t sound) {
-    soundTimer = sound;
-
-}
-
-
-
-
-
