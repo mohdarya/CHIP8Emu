@@ -29,6 +29,12 @@ public:
     std::string instructionToHex(uint8_t instruction);
     void clearScreen();
     char intToHex(int instruction);
+
+    int generateRand();
+
+    void draw(uint8_t x, uint8_t y, uint8_t height);
+
+    uint8_t getKey();
 };
 
 
