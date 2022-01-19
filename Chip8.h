@@ -37,7 +37,7 @@ private:
     uint8_t delayTimer;
     uint8_t soundTimer;
     uint8_t keys[16]{};
-    uint32_t pixels[64][32]{};
+    int pixels[64][32]{};
 
 public:
     void loadProgram(std::string fileName);
