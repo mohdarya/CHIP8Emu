@@ -170,13 +170,13 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
         case 'e':
             switch (intToHex(instructionSecond)) {
                 case '9e':
-                        if(getKey() == registers[secondNibble])
+                        if(key() == registers[secondNibble])
                         {
                             programCounter += 2;
                         }
                     break;
                 case 'a1':
-                    if(getKey() != registers[secondNibble])
+                    if(key() != registers[secondNibble])
                     {
                         programCounter += 2;
                     }
@@ -226,6 +226,19 @@ int Chip8::generateRand(){
 uint8_t Chip8::getKey(){
 
 
+
 }
+
+uint8_t Chip8::key(){
+
+
+}
+
+uint8_t Chip8::getDelay(){
+
+
+}
+
+
 
 
