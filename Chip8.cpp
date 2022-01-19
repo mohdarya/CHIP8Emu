@@ -9,6 +9,7 @@
 #include <iostream>
 #include <bitset>
 #include <iomanip>
+#include <random>
 using namespace std;
 
 const unsigned int START_ADDRESS = 0x200;
@@ -147,6 +148,41 @@ void Chip8::runInstruction(uint8_t instructionFirst, uint8_t instructionSecond) 
                     registers[thirdNibble] <<= 1;
                     break;
             }
+            break;
+        case '9':
+            if(registers[secondNibble]  != registers[thirdNibble])
+            {
+                programCounter += 2;
+            }
+            break;
+        case 'a':
+            indexReg = secondNibble + instructionSecond;
+            break;
+        case 'b':
+            programCounter = registers[0x0] + secondNibble + instructionSecond;
+            break;
+        case 'c':
+            registers[secondNibble] = generateRand() & instructionSecond;
+            break;
+        case 'd':
+            draw(registers[secondNibble], registers[thirdNibble], fourthNibble);
+            break;
+        case 'e':
+            switch (intToHex(instructionSecond)) {
+                case '9e':
+                        if(getKey() == registers[secondNibble])
+                        {
+                            programCounter += 2;
+                        }
+                    break;
+                case 'a1':
+                    if(getKey() != registers[secondNibble])
+                    {
+                        programCounter += 2;
+                    }
+                    break;
+
+            }
 
     }
 }
@@ -162,6 +198,11 @@ void Chip8::clearScreen() {
 
 }
 
+
+void Chip8::draw(uint8_t x, uint8_t y, uint8_t height)
+{
+
+}
 std::string Chip8::instructionToHex(uint8_t instruction) {
     stringstream  stream;
     stream << hex << (int) instruction ;
@@ -174,6 +215,17 @@ char Chip8::intToHex(int instruction) {
     return stream.str()[0];
 }
 
+int Chip8::generateRand(){
+    random_device dev;
+    mt19937 rng(dev());
+    uniform_int_distribution<mt19937::result_type> dist255(0,255);
 
+    return (int) dist255(rng);
+}
+
+uint8_t Chip8::getKey(){
+
+
+}
 
 
